@@ -1,6 +1,5 @@
 flask
 flask-cors
-flask-mail
 flask-migrate
 flask-restful
 flask-sqlalchemy
