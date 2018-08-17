@@ -12,7 +12,8 @@ It is best to run the microservice using a virtual Python environment (virtualen
 5. Set the following environment variables using the SET command:
     * SECRET_KEY - The secret key used for token authentication. This should be the same secret key used for the SSO microservice.
     * DATABASE_URL - The URL of the database to interface with. This should include the schema, host, port and password where applicable.
-6. Run the following command: flask run -p [PORT] (where [PORT] is the port from which to run the microservice. This defaults to 5000 but may need to change if multiple microservices are running from the same machine). This will start the server.
+6. Set the FLASK_APP environment variable to "AuthService.py".
+7. Run the following command: flask run -p [PORT] (where [PORT] is the port from which to run the microservice. This defaults to 5000 but may need to change if multiple microservices are running from the same machine). This will start the server.
 
 ## API Specification
 
