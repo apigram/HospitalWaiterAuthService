@@ -16,13 +16,30 @@ It is best to run the microservice using a virtual Python environment (virtualen
 7. Run the following command: flask run -p [PORT] (where [PORT] is the port from which to run the microservice. This defaults to 5000 but may need to change if multiple microservices are running from the same machine). This will start the server.
 
 ## API Specification
+###Endpoints
+|Endpoint URL            |Available actions   |
+|------------------------|--------------------|
+|`/authservice/token`    |`GET`               |
+|`/authservice/user`     |`GET, POST`         |
+|`/authservice/user/<id>`|`GET, PATCH, DELETE`|
 
-|Endpoint URL        |Available actions|
-|--------------------|-----------------|
-|`/authservice/token`|`GET`            |
+### Request Body (POST/PATCH requests)
+NOTE: All fields listed below are mandatory for POST requests, but optional for PATCH requests.
+```json
+{
+    "username": "your_username_here",
+    "email": "your_email@testdomain.com",
+    "password": "your_password_here",
+    "password_confirm": "your_password_here"
+}
+```
 
 ## Usage
-This microservice provides a single endpoint which will retrieve an authentication token upon a successful login using 
+This microservice provides an endpoint which will retrieve an authentication token upon a successful login using 
 basic login authentication (ie. username and password). Simply make a request to `/authservice/token`,
 including the username and password in the auth header of your request. The returned token can then be attached to the 
 Authorization header under the 'Bearer' scheme for any requests to other microservices in the HospitalWaiter suite.
+
+The **user** endpoints allow for simple user management. Instead of using PUT for updates to a user, consumers should use 
+PATCH instead as changes to a user resource will only ever be piecemeal and NOT replacement (this is because passwords 
+can be changed independently of other user data, such as email and username).

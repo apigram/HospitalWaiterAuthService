@@ -1,4 +1,4 @@
-from app import app, db
+from app import app, token_auth, db
 from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
 import bcrypt
@@ -50,3 +50,12 @@ class User(db.Model):
             return None  # invalid token
         user = User.query.get(data['id'])
         return user
+
+    @staticmethod
+    @token_auth.verify_token
+    def verify_token(token):
+        # first try to authenticate by token
+        user = User.verify_auth_token(token)
+        if not user:
+            return False
+        return True
