@@ -16,7 +16,7 @@ It is best to run the microservice using a virtual Python environment (virtualen
 7. Run the following command: flask run -p [PORT] (where [PORT] is the port from which to run the microservice. This defaults to 5000 but may need to change if multiple microservices are running from the same machine). This will start the server.
 
 ## API Specification
-###Endpoints
+### Endpoints
 |Endpoint URL            |Available actions   |
 |------------------------|--------------------|
 |`/authservice/token`    |`GET`               |
