@@ -6,7 +6,7 @@ from flask_cors import CORS
 from flask_httpauth import HTTPBasicAuth
 
 app = Flask(__name__, static_url_path="")
-cors = CORS(app, resources={r"/authservice/token": {"origins": "*"}})
+cors = CORS(app)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
